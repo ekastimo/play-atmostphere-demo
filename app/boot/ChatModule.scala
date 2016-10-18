@@ -16,6 +16,9 @@ import scala.concurrent.Future
 @Singleton
 class ChatLoader @Inject()(lifecycle: ApplicationLifecycle) {
 
+  /**
+    * Initialises the chat service
+    */
   def initialize(): Unit = {
     instance.discover(classOf[ChatService]).ready
   }
@@ -32,7 +35,9 @@ class ChatLoader @Inject()(lifecycle: ApplicationLifecycle) {
   initialize()
 }
 
-
+/**
+  * This module will be loaded before the application starts
+  */
 class ChatModule extends AbstractModule {
   protected def configure: Unit = {
     bind(classOf[ChatLoader]).asEagerSingleton()
